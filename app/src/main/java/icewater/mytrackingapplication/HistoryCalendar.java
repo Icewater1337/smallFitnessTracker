@@ -26,13 +26,19 @@ public class HistoryCalendar extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                String monthString ="";
+                String dayString ="";
 
+                if (day < 10) {
+                    dayString = "0"+String.valueOf(day);
+                } else {
+                    dayString = String.valueOf(day);
+                }
                if ( month <10) {
                    monthString = "0"+String.valueOf(month+1);
                } else {
                    monthString = String.valueOf(month+1);
                }
-                selectedDate =String.valueOf(day)+"/"+monthString+"/"+String.valueOf(year);
+                selectedDate =dayString+"/"+monthString+"/"+String.valueOf(year);
 
                 SharedPreferences sp = getSharedPreferences("DailyBusiness", Context.MODE_PRIVATE);
 

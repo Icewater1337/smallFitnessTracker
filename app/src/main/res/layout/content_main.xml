@@ -66,5 +66,32 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your weight today"
+        android:id="@+id/weightLbl"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dailyWeight"
+        android:layout_below="@+id/weightLbl"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save weight"
+        android:id="@+id/storeWeight"
+        android:layout_below="@+id/dailyWeight"
+        android:layout_alignParentLeft="true"
+        android:onClick="saveWeight"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

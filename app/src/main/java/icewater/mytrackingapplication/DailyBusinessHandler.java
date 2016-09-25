@@ -15,7 +15,7 @@ public class DailyBusinessHandler {
     String currentApplicationDate;
 
     public void createNewDay(SharedPreferences sp) {
-        currentApplicationDate = MainActivity.getCurrentApplicationDate();
+        currentApplicationDate = getTodaysDate();
         SharedPreferences spD = sp;
         String dayFoodStringName = currentApplicationDate+"Food";
         String dayTrainingStringName = currentApplicationDate+"Training";
@@ -26,7 +26,10 @@ public class DailyBusinessHandler {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(dayFoodStringName, dayFoodString);
         editor.putString(dayTrainingStringName, dayTrainingString);
+        editor.putString("currentApplicationDate", currentApplicationDate);
+        MainActivity.setApplicationDate(currentApplicationDate);
         editor.commit();
+
     }
 
     public Boolean checkIfSameDay() {

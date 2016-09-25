@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity
 
     private String cpm;
     private String rmr;
+    private String weightString;
     public static String currentApplicationDate;
     public DailyBusinessHandler dbh;
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity
 
 
         SharedPreferences spD = getSharedPreferences("DailyBusiness", Context.MODE_PRIVATE);
+
         currentApplicationDate = spD.getString("currentApplicationDate", currentApplicationDate);
 
         if( currentApplicationDate == null) {
@@ -58,8 +61,19 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+        weightString = spD.getString("weightString", weightString);
+
+        if( weightString == null) {
+            weightString ="";
+            SharedPreferences.Editor  edit = spD.edit();
+            edit.putString("weightString", weightString);
+            edit.commit();
+
+        }
+
         if( !dbh.checkIfSameDay()) {
             dbh.createNewDay(spD);
+
         }
 
 
@@ -211,5 +225,25 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void saveWeight(View view) {
+        String dailyWeight = ((EditText)findViewById(R.id.dailyWeight)).getText().toString();
+        SharedPreferences sp = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("weight",dailyWeight);
+        editor.commit();
+        dailyWeight = currentApplicationDate+":"+dailyWeight+"|";
+        SharedPreferences spD = getSharedPreferences("DailyBusiness", Context.MODE_PRIVATE);
+        weightString = spD.getString("weightString", weightString);
+        weightString += dailyWeight;
+        SharedPreferences.Editor  edit = spD.edit();
+        edit.putString("weightString", weightString);
+        edit.commit();
+
+        // adjust weight in basic infos and recalculate stuff
+
+
+
     }
 }
