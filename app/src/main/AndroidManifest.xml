@@ -21,7 +21,8 @@
         <activity android:name=".BasicInfo" />
         <activity android:name=".AddStuff" />
         <activity android:name=".History" />
-        <activity android:name=".HistoryCalendar"></activity>
+        <activity android:name=".HistoryCalendar" />
+        <activity android:name=".WeightHistory"></activity>
     </application>
 
 </manifest>
